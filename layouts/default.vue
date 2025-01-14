@@ -11,14 +11,17 @@
         register
       </v-btn>
 
-      <v-btn
+      <v-avatar
         @click.stop="$router.push('/profile')"
         v-if="auth"
         class="mr-4"
         color="primary"
       >
-        profile
-      </v-btn>
+        <v-img
+          :src="`
+          https://www.gravatar.com/avatar/${auth.email}?d=identicon`"
+        ></v-img>
+      </v-avatar>
       <v-btn
         @click.stop="$store.dispatch('users/logout')"
         v-if="auth"

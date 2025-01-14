@@ -40,6 +40,26 @@
       <!-- <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn> -->
+
+      <v-avatar
+        @click.stop="$router.push('/profile')"
+        v-if="auth"
+        class="mr-4"
+        color="primary"
+      >
+        <v-img
+          :src="`
+          https://www.gravatar.com/avatar/${auth.email}?d=identicon`"
+        ></v-img>
+      </v-avatar>
+      <v-btn
+        @click.stop="$store.dispatch('users/logout')"
+        v-if="auth"
+        class="mr-3"
+        color="error"
+      >
+        logout
+      </v-btn>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -87,7 +107,12 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js',
+      auth: '',
     }
+  },
+
+  mounted() {
+    this.auth = this.$store.getters['users/token']
   },
 }
 </script>
