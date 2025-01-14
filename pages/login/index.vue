@@ -68,7 +68,7 @@ export default {
             }
             // commit
             await this.$store.dispatch('users/setToken', res.token)
-            this.$router.push('/profile')
+            this.$router.push('/admins')
           })
       } catch (error) {
         this.message = 'Invalid email or password'
