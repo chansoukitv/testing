@@ -4,6 +4,17 @@
     <v-row>
       <v-col cols="12" md="6" offset-md="3">
         <v-card>
+          <v-alert
+            v-if="message"
+            type="error"
+            dismissible
+            border="left"
+            colored-border
+            elevation="2"
+            icon="mdi-alert"
+          >
+            {{ message }}
+          </v-alert>
           <v-card-title>Login</v-card-title>
           <v-card-text>
             <v-form @submit.prevent="login">
@@ -33,6 +44,7 @@ export default {
     return {
       email: '',
       password: '',
+      message: '',
     }
   },
   methods: {
@@ -51,6 +63,7 @@ export default {
           .then((res) => res.json())
           .then(async (res) => {
             if (res.error) {
+              this.message = 'Invalid email or password'
               throw new Error(res.error)
             }
             // commit
@@ -58,6 +71,7 @@ export default {
             this.$router.push('/profile')
           })
       } catch (error) {
+        this.message = 'Invalid email or password'
         console.error(error)
       }
     },
