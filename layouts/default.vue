@@ -4,25 +4,28 @@
       <v-toolbar-title @click="$router.push('/')">{{ title }}</v-toolbar-title>
       <v-spacer />
 
-      <v-btn icon @click="$router.push('/login')" class="mr-4" v-if="!auth">
+      <v-btn @click="$router.push('/login')" class="mr-4" v-if="!auth">
         login
       </v-btn>
-      <v-btn
-        icon
-        @click.stop="$router.push('/register')"
-        class="mr-3"
-        v-if="!auth"
-      >
+      <v-btn @click.stop="$router.push('/register')" class="mr-3" v-if="!auth">
         register
       </v-btn>
 
       <v-btn
-        icon
         @click.stop="$router.push('/profile')"
         v-if="auth"
-        class="mr-3"
+        class="mr-4"
+        color="primary"
       >
         profile
+      </v-btn>
+      <v-btn
+        @click.stop="$store.dispatch('users/logout')"
+        v-if="auth"
+        class="mr-3"
+        color="error"
+      >
+        logout
       </v-btn>
     </v-app-bar>
     <v-main>

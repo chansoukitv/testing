@@ -21,8 +21,12 @@ export const mutations = {
   SET_TOKEN(state, token) {
     state.token = token
     localStorage.setItem('token', token)
+    setTimeout(() => {
+      window.location.reload()
+    }, 1000)
 
   },
+
 }
 
 export const actions = {
@@ -31,7 +35,14 @@ export const actions = {
   // }, 
   setToken({ commit }, token) {
     commit('SET_TOKEN', token)
+  },
+
+  logout({ commit }) {
+    commit('SET_TOKEN', null)
+    localStorage.removeItem('token')
+    this.$router.push('/')
   }
+
 
 }
 

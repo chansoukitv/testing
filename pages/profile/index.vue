@@ -44,8 +44,9 @@
   </div>
 </template>
 
-    <script>
+<script>
 export default {
+  middleware: ['app'], // Ensure the 'auth' middleware exists in the middleware folder
   data() {
     return {
       data: {},
